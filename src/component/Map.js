@@ -17,7 +17,7 @@ export default function Map() {
       try {
         const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getDaerah`);
         setDataDaerah(response.data);
-        console.log("dataDaerah", response.data);
+        // console.log("dataDaerah", response.data);
       } catch (error) {
         console.error(error)
       }
@@ -28,7 +28,7 @@ export default function Map() {
       try {
         const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getUnsur`);
         setDataUnsur(response.data);
-        console.log("dataUnsur", response.data);
+        // console.log("dataUnsur", response.data);
 
       } catch (error) {
         console.error(error)

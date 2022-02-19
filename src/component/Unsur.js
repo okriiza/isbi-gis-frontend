@@ -11,6 +11,7 @@ import axios from "axios";
 export default function Unsur() {
   const params = useParams();
   const [element, setElement] = useState();
+  const [area, setArea] = useState();
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
@@ -19,7 +20,8 @@ export default function Unsur() {
         const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getJenisById/${params.id_element}/${params.id_area}`);
         setTypes(response.data);
         setElement(response.data[0].element.name_element);
-        console.log("dataDetail", response.data);
+        setArea(response.data[0].area.name_area);
+        // console.log("dataDetail", response.data);
       } catch (error) {
         console.error(error)
       }
@@ -30,9 +32,12 @@ export default function Unsur() {
 
   return <>
     <Header />
-    <div className="imageBudaya"></div>
-    <div className="cards">
-      <h1>{element} </h1>
+    {/* <div className="imageBudaya"></div> */}
+    <div className="cards" style={{ marginTop: 70 }}>
+      <div className="text-center">
+        <h1 className='text-uppercase fw-bolder'>{element}</h1>
+        <p>{area}</p>
+      </div>
       <div className="cards__container">
         <div className="cards__wrapper">
           <ul className="cards__items">
