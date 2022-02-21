@@ -20,12 +20,18 @@ export default function Detail() {
   useEffect(() => {
     const getDetail = async () => {
       try {
-        const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getDetail/${params.id_element}/${params.id_area}/${params.id_type}`);
+        const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getDetail/${params.id_element}/${params.id_area}/${params.id_type}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.REACT_APP_TOKEN_API}`
+          }
+        });
         setDetailElement(response.data);
         // console.log("DataDetail", response.data);
       } catch (error) {
         console.error(error)
       }
+
     };
     getDetail();
   }, [params.id_element, params.id_area, params.id_type]);

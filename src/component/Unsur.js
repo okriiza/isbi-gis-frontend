@@ -13,11 +13,18 @@ export default function Unsur() {
   const [element, setElement] = useState();
   const [area, setArea] = useState();
   const [types, setTypes] = useState([]);
+  const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     const GetDetail = async () => {
       try {
-        const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getJenisById/${params.id_element}/${params.id_area}`);
+        const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getJenisById/${params.id_element}/${params.id_area}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.REACT_APP_TOKEN_API}`
+          }
+        });
         setTypes(response.data);
         setElement(response.data[0].element.name_element);
         setArea(response.data[0].area.name_area);
@@ -25,6 +32,7 @@ export default function Unsur() {
       } catch (error) {
         console.error(error)
       }
+      setLoading(false);
     };
     GetDetail();
   }, [params.id_element, params.id_area]);
@@ -33,6 +41,7 @@ export default function Unsur() {
   return <>
     <Header />
     {/* <div className="imageBudaya"></div> */}
+    {loading && <div>Loading...</div>}
     <div className="cards" style={{ marginTop: 70 }}>
       <div className="text-center">
         <h1 className='text-uppercase fw-bolder'>{element}</h1>

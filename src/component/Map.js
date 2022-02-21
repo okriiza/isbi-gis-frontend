@@ -15,7 +15,12 @@ export default function Map() {
 
     const GetDaerah = async () => {
       try {
-        const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getDaerah`);
+        const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getDaerah`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.REACT_APP_TOKEN_API}`
+          }
+        });
         setDataDaerah(response.data);
         // console.log("dataDaerah", response.data);
       } catch (error) {
@@ -26,7 +31,12 @@ export default function Map() {
 
     const GetUnsur = async () => {
       try {
-        const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getUnsur`);
+        const { data: response } = await axios.get(`${process.env.REACT_APP_URL_API}/getUnsur`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.REACT_APP_TOKEN_API}`
+          }
+        });
         setDataUnsur(response.data);
         // console.log("dataUnsur", response.data);
 
