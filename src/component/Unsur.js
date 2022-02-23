@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Footer from './Footer';
-import Header from './Header';
+import Navbar from './Dashboard/Navbar'
 import "../assets/css/style.css";
 // import { Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
@@ -39,7 +39,7 @@ export default function Unsur() {
 
 
   return <>
-    <Header />
+    <Navbar />
     {/* <div className="imageBudaya"></div> */}
     {loading && <div>Loading...</div>}
     <div className="cards" style={{ marginTop: 70 }}>

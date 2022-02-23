@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from './Footer';
-import Header from './Header';
+import Navbar from './Dashboard/Navbar'
 import parse from 'html-react-parser';
 import ReactPlayer from 'react-player/lazy'
 import AudioPlayer from 'react-h5-audio-player';
@@ -10,7 +10,7 @@ import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import 'react-h5-audio-player/lib/styles.css';
 import "../assets/css/style.css";
-import { Breadcrumb, Tab, Tabs } from 'react-bootstrap';
+import { Tab, Tabs } from 'react-bootstrap';
 
 export default function Detail() {
   const params = useParams();
@@ -38,25 +38,19 @@ export default function Detail() {
 
 
   return <>
-    <Header />
+    <Navbar />
     {/* <div className="imageBudaya2"></div> */}
     <div className="container">
       <div className="card shadow-lg border-0 rounded-3 py-3 px-4" style={{ marginTop: 120 }}>
         {detailElement ? <>
           <div className="card-body">
-            <Breadcrumb>
-              <Breadcrumb.Item href="/" className='text-decoration-none'>
-                Home
-              </Breadcrumb.Item>
-              <Breadcrumb.Item href="/">
-                {detailElement.area.name_area}
-              </Breadcrumb.Item>
-              <Breadcrumb.Item href={`/unsur/${params.id_element}/${params.id_area}`}>
-                {detailElement.element.name_element}
-              </Breadcrumb.Item>
-              <Breadcrumb.Item active>{detailElement.type.name_type}</Breadcrumb.Item>
-            </Breadcrumb>
-
+            
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="/">{detailElement.area.name_area}</a></li>
+                <li><a href={`/unsur/${params.id_element}/${params.id_area}`}> {detailElement.element.name_element}</a></li>
+                <li>{detailElement.type.name_type}</li>
+            </ul>
             <div className="row d-flex justify-content-center">
               <div className="col-12 text-center mt-3">
                 <img src={detailElement.type.image} alt={detailElement.type.name_type} width='600px' height='auto' className='rounded-3' />
