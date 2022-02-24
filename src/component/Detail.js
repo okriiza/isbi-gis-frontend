@@ -44,12 +44,11 @@ export default function Detail() {
       <div className="card shadow-lg border-0 rounded-3 py-3 px-4" style={{ marginTop: 120 }}>
         {detailElement ? <>
           <div className="card-body">
-            
-            <ul class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li><a href="/">{detailElement.area.name_area}</a></li>
-                <li><a href={`/unsur/${params.id_element}/${params.id_area}`}> {detailElement.element.name_element}</a></li>
-                <li>{detailElement.type.name_type}</li>
+            <ul className="breadcrumb">
+              <li><a className='text-decoration-none' href="/">Home</a></li>
+              <li><a className='text-decoration-none' href="/">{detailElement.area.name_area}</a></li>
+              <li><a className='text-decoration-none' href={`/unsur/${params.id_element}/${params.id_area}`}>{detailElement.element.name_element}</a></li>
+              <li>{detailElement.type.name_type}</li>
             </ul>
             <div className="row d-flex justify-content-center">
               <div className="col-12 text-center mt-3">
@@ -99,10 +98,12 @@ export default function Detail() {
                             <img
                               alt={detailElement.type.name_type}
                               src={image.path_image}
-                              width="100%"
+                              width="80%"
                               height="auto"
+                              className='rounded-3'
                             />
                           </Zoom>
+                          <h5>{image.name_image}</h5>
                         </div>
                       );
                     })}
@@ -113,9 +114,9 @@ export default function Detail() {
                   {detailElement.detail_videos &&
                     detailElement.detail_videos.map((video) => {
                       return (
-                        <div className="col-md-6 mb-3" key={video.id}>
+                        <div className="col-md-4 mb-3" key={video.id}>
                           <ReactPlayer url={video.path_video} width='100%'
-                            height='200px' />
+                            height='250px' />
                         </div>
                       );
                     })}
